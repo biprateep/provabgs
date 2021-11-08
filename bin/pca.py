@@ -10,12 +10,10 @@ import numpy as np
 # --- speculator ---
 from speculator import SpectrumPCA
 
-if os.environ["machine"] == "cori":
-    dat_dir = (
-        "/global/cscratch1/sd/chahah/provabgs/emulator/"  # hardcoded to NERSC directory
-    )
-elif os.environ["machine"] == "tiger":
-    dat_dir = "/tigress/chhahn/provabgs/"
+if os.environ["NERSC_HOST"] == "cori":
+    dat_dir = "/global/cscratch1/sd/chahah/provabgs/emulator/lrg/"  # hardcoded to NERSC directory
+elif os.environ["NERSC_HOST"] == "perlmutter":
+    dat_dir = "/pscratch/sd/b/bid13/provabgs/emulator/lrg/"
 
 version = "0.1"
 
