@@ -11,7 +11,7 @@ from speculator import Speculator
 # -------------------------------------------------------
 # params
 # -------------------------------------------------------
-version = "0.1"
+version = "lrg.0.1"
 model = sys.argv[1]
 nbatch = int(sys.argv[2])
 i_wave = int(sys.argv[3])
@@ -21,10 +21,10 @@ Nunits = int(sys.argv[6])
 b_size = int(sys.argv[7])
 desc = "nbatch%i" % b_size
 # -------------------------------------------------------
-assert os.environ["machine"] == "tiger"
+assert os.environ["NERSC_HOST"] == "perlmutter"
 
-# dat_dir='/scratch/gpfs/chhahn/provabgs/' # hardcoded to tiger directory
-dat_dir = "/tigress/chhahn/provabgs/emulator/"
+# dat_dir='/scratch/gpfs/chhahn/provabgs/'
+dat_dir = "/pscratch/sd/b/bid13/provabgs/emulator/lrg/"
 wave = np.load(os.path.join(dat_dir, "wave.%s.npy" % model))
 
 # wavelength bins
