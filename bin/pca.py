@@ -15,7 +15,7 @@ if os.environ["NERSC_HOST"] == "cori":
 elif os.environ["NERSC_HOST"] == "perlmutter":
     dat_dir = "/pscratch/sd/b/bid13/provabgs/emulator/lrg/"
 
-version = "0.1"
+version = "lrg.0.1"
 
 name = sys.argv[1]
 batch0 = int(sys.argv[2])
