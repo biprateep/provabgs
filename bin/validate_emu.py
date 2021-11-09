@@ -20,11 +20,11 @@ import matplotlib.pyplot as plt
 # -------------------------------------------------------
 # input
 # -------------------------------------------------------
-version = "0.1"
+version = "lrg.0.1"
 
 model = "nmf"
-archs = ["8x256", "8x256", "8x256", "8x256"]  # architectures
-n_pcas = [30, 50, 50, 30]
+archs = ["8x256", "8x256", "8x256", "8x256", "8x256"]  # architectures
+n_pcas = [50, 50, 50, 50, 30]
 n_param = 10
 nbatch = 100
 
@@ -36,21 +36,23 @@ nbatch = 100
 # n_param = 4
 # nbatch = 200
 
-desc = "nbatch250"
+desc = "nbatch2048"
 # dat_dir = '/Users/chahah/data/provabgs/'
-dat_dir = "/tigress/chhahn/provabgs/emulator/"
+dat_dir = "/pscratch/sd/b/bid13/provabgs/emulator/lrg/"
 
 # read in wavelenght values
 wave = np.load(os.path.join(dat_dir, "wave.%s.npy" % model))
 
-wave_bins = [  # (wave >= 1000) & (wave < 2000),
+wave_bins = [
+    (wave >= 1000) & (wave < 2000),
     (wave >= 2000) & (wave < 3600),
     (wave >= 3600) & (wave < 5500),
     (wave >= 5500) & (wave < 7410),
     (wave >= 7410) & (wave < 60000),
 ]
 
-str_wbin = [  # '.w1000_2000',
+str_wbin = [
+    ".w1000_2000",
     ".w2000_3600",
     ".w3600_5500",
     ".w5500_7410",
@@ -278,20 +280,28 @@ for i in range(np.sum(outlier)):
 sub.set_xlabel("wavelength ($A$)", fontsize=25)
 sub.set_xlim(2.3e3, 1e4)
 fig.savefig(ffig.replace(".png", ".outliers.png"), bbox_inches="tight")
-"""
-# plot loss 
-losses = [np.loadtxt(os.path.join(dat_dir, '%s.v%s.seed0_%i.w%i.pca%i.%s.%s.loss.dat' % (model, version, nbatch-1, i, n_pcas[i], archs[i], desc))) for i in range(len(wave_bins))]
 
-fig = plt.figure(figsize=(10,5))
-sub = fig.add_subplot(111)
-for i, loss in enumerate(losses): 
-    sub.plot(np.arange(loss.shape[0]), loss[:,2], label='wave bin %i' % i)
+# # plot loss
+# losses = [
+#     np.loadtxt(
+#         os.path.join(
+#             dat_dir,
+#             "%s.v%s.seed0_%i.w%i.pca%i.%s.%s.loss.dat"
+#             % (model, version, nbatch - 1, i, n_pcas[i], archs[i], desc),
+#         )
+#     )
+#     for i in range(len(wave_bins))
+# ]
 
-sub.legend(loc='upper right')
-sub.set_ylabel('loss', fontsize=25)
-sub.set_yscale('log')
-sub.set_xlabel('Epochs', fontsize=25)
-sub.set_xlim(0, loss.shape[0])
-fig.savefig(ffig.replace('.png', '.loss.png')
-"""
+# fig = plt.figure(figsize=(10, 5))
+# sub = fig.add_subplot(111)
+# for i, loss in enumerate(losses):
+#     sub.plot(np.arange(loss.shape[0]), loss[:, 2], label="wave bin %i" % i)
+
+# sub.legend(loc="upper right")
+# sub.set_ylabel("loss", fontsize=25)
+# sub.set_yscale("log")
+# sub.set_xlabel("Epochs", fontsize=25)
+# sub.set_xlim(0, loss.shape[0])
+# fig.savefig(ffig.replace(".png", ".loss.png"), bbox_inches="tight")
 
