@@ -10,6 +10,8 @@ Log of modifications:
 #example
 python pca.py nmf 0 99 50 2
 ```
+- Then train the emulator using: `emulator.py`. with the arguments `name (used: nmf)` `fsps_batch (used: 100)` `wavelength bin (used: 0,1,2,3,4)` `num_PCA_bases (used: 50,50,50,50,30)` `nlayers (used 8)` `n_nodes (used: 256)` `batch_size (used: 2048)`. See `/perlmutter/train_job.slurm` for the slurm script.
+
 # PRObabilistic Value-Added Bright Galaxy Survey (PROVABGS)
 [![Gitter](https://badges.gitter.im/provabgs/provabgs.svg)](https://gitter.im/provabgs/provabgs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
